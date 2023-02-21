@@ -40,10 +40,9 @@ cat cyberattacks.txt |grep -oP "meta\s\w+"
 cat cyberattacks.txt |grep -oP "(?<=meta\s)\w+"
 ```
 5. Let’s now try more interesting (yet complex) patterns. You might use vim to open the file and look for useful patterns. Let’s extract the introduction — We could ask grep to catch the paragraph corresponding to a sentence that is only present in the introduction. Try to run the following command cat cyberattacks.txt | grep -P ’A cyberattack is’ — This does not work since the source code is here different from what is visible on the web page. Now try the following : cat cyberattacks.txt | grep -P ’A cyberattack is any type’ — It is now working, but what if the text evolves over time ? Try the following instead : cat cyberattacks.txt | grep -A1 ’mw-content-text’ | grep -v ’mw-content-text’. This is based on the text above that seems to be more stable. 
-```
-
-```
+ 
 6. Your turn — Extract the tab title — Make a list of cyber attacks based on section titles
 ```
-
+cat cyberattacks.txt | grep -A1 'mw-content-text' | grep -v 'mw-content-text' 
+cat cyberattacks.txt | grep -P "(?<=<title>)"
 ```
