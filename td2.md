@@ -124,86 +124,122 @@ crontab -e
 ## Exercise 4: Hashing
 1. Create a folder named hash_checksum. Go into this folder 
 ```
+mkdir hash_checksum
+cd hash_checksum
 ```
 2. Inside this folder, create two files named .sensible_addresses and .sen sible_passwords 
 ```
+touch .sensible_addresses .sensible_passwords
 ```
 3. Display the list of files of the folder 
 ```
+ls -a
 ```
 4. Still inside the folder hash_checksum, create a script named gentle_script.sh. This script should display the following text "Have a good day" 
 ```
+
 ```
 5. Run the script 
 ```
+./gentle_script.sh
 ```
 6. Compute the sha256sum of gentle_script. Store it into a file named log_sha 
 ```
+sha256sum gentle_script.sh > log_sha
 ```
 7. Now corrupt the file by adding a line of code that deletes any file starting with : ".sensible" 
 ```
+echo 'rm -f .sensible*' >> gentle_script.sh
 ```
 8. Compute again the sha256sum of gentle_script. Store it into the log_sha file 
 ```
+sha256sum gentle_script.sh > log_sha
 ```
 9. Run the script 
 ```
+./gentle_script.sh
 ```
 10. Display again the list of files of the folder 
 ```
+ls -a
 ```
 11. Display the log_sha content : are the hashes any different ? 
+```
+cat log_sha
+```
+ Diferrent car le contenu a changé!
  
 ## Exercise 5: Compressing 
 1. Install the QPDF free command-line program. Part of this program is the zlib-flate command that compress and un compress files using the deflate algorithm. 
 ```
+sudo apt-get install qpdf
 ```
 2. Create a directory "compress", go into this directory 
 ```
+mkdir compress
+cd compress
 ```
 3. Create a first file "hello" whose content is "Hello" 
 ```
+echo "Hello" > hello
 ```
 4. Compute the deflate compression (level 1) of this file. Store the compres sed file size into a file log_compress
 ```
+zlib-flate -1 < hello > hello.deflate
+ls -l hello.deflate | awk '{print $5}' > log_compress
 ```
 5. Create a second file "hello_multiple" whose content is 1000 lines of "Hello" 2 
 ```
+yes "Hello" | head -n 1000 > hello_multiple
 ```
 6. Compute the deflate compression (level 1) of this file. Store the compres sed file size into a file log_compress 
 ```
+zlib-flate -1 < hello_multiple > hello_multiple.deflate
+ls -l hello_multiple.deflate | awk '{print $5}' >> log_compress
 ```
 7. Create a third file "hello_mulitple_i" whose content is 1000 lines of "Hello i" (i varying from 1 to 100)
 ```
+for i in {1..100}; do echo "Hello $i"; done > hello_multiple_i
 ```
 8. Compute the deflate compression (level 1) of this third file. Store the compressed file size into log_compress 
 ```
+zlib-flate -1 < hello_multiple_i > hello_multiple_i.deflate
+ls -l hello_multiple_i.deflate | awk '{print $5}' >> log_compress
 ```
 9. Display the content of log_compress 
 ```
+cat log_compress
 ```
-10. Compute the compression ratio of each file, also display it as a simple fraction (e.g. 12.6 => 10 :1) 
-```
-```
-11. Analyse the results 
-```
-```
+
 ## Exercise 6: ACLs : Access Control Lists 
 
 1. Create users — Create a user named client_1 with password passwd-client_1 — Create two other users named contributor_1 and contributor_2 with respective passwords passwd-contributor_1 and passwd-contributor_2 
 ```
+sudo adduser client_1
+sudo adduser contributor_1
+sudo adduser contributor_2
 ```
+(on ajoute les mdp à chaque exeecution)
 2. Create groups — clients — contributors 
 ```
+sudo addgroup clients
+sudo addgroup contributors
 ```
 3. Add users to their respective group 
 ```
+sudo usermod -aG clients client_1
+sudo usermod -aG contributors contributor_1
+sudo usermod -aG contributors contributor_2
 ```
 4. Check the users and groups have been successfully created 
 ```
+groups client_1
+groups contributor_1
+groups contributor_2
 ```
 5. Create a folder lika_project and give it the following authorizations to groups — clients : read — contributors : read and write 
 ```
+
 ```
 6. Also use the command ls -l and notice the change on lika_project folder 
 ```
