@@ -239,18 +239,26 @@ groups contributor_2
 ```
 5. Create a folder lika_project and give it the following authorizations to groups — clients : read — contributors : read and write 
 ```
-
+mkdir lika_project
+chmod g+r lika_project
+chmod g+rw lika_project
 ```
 6. Also use the command ls -l and notice the change on lika_project folder 
 ```
+ls -l
 ```
 7. Change user and become as a client, then try deleting the folder 
 ```
+su client_lucie 
+rm -r lika_project
 ```
 8. Now change user and become as a contributor, then try deleting the folder 
 ```
+su contributor_lucie
+rm -r lika_project
 ```
 9. Check who is the current user
 ```
+whoami
 ```
 
