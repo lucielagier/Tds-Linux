@@ -327,59 +327,59 @@ tmux
 
 ```
 10. Detach from the current tmux session (without stopping cmatrix)
-```
 
-```
+Press "Ctrl+b" + "d"
+
 11. Create a new tmux session
 ```
-
+tmux new -s nv_session
 ```
 12. Say "Hello session 1" using bash in your new tmux session
 ```
 
 ```
 13. Detach from the current tmux session
-```
 
-```
+Press "Ctrl+b" + "d"
+
 14. List all running sessions
 ```
-
+tmux ls
 ```
 15. Attach again to session 0
 ```
-
+tmux attach-session -t 0
 ```
 16. Detach again
-```
 
-```
+Press "Ctrl+b" + "d"
+
 17. Attach again to session 1
 ```
-
+tmux attach-session -t 1
 ```
 18. Detach again
-```
 
-```
+Press "Ctrl+b" + "d"
+
 19. List all running sessions
 ```
-
+tmux ls
 ```
 20. Kill all tmux sessions and quit tmux
 ```
-
+tmux kill-session -a
 ```
 21. List all sessions
 ```
-
+tmux ls
 ```
 
 ## Exercise 4:.5 Use functions arguments / parameters
 
 1. Display the cmatrix help function
 ```
-
+tmux -d
 ```
 2. Launch cmatrix and make it display white characters (in place of the
 green)
